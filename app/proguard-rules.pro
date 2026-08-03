@@ -1,0 +1,2 @@
+-keep class com.github.junrar.** { *; }
+-dontwarn org.slf4j.**
