@@ -26,8 +26,8 @@ jobs:
       - name: Build APK
         run: gradle :app:assembleDebug --stacktrace
       - name: Prepare APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk Cursed-Keyboard.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk Cursed-Keyboard-MaterialYou.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Cursed-Keyboard-APK
-          path: Cursed-Keyboard.apk
+          name: Cursed-Keyboard-MaterialYou-APK
+          path: Cursed-Keyboard-MaterialYou.apk
