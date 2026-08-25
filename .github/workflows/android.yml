@@ -1,14 +1,12 @@
-name: Build Android APK
+name: Build Cursed Keyboard APK
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [cursed-keyboard-build-20260825]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -28,18 +26,8 @@ jobs:
       - name: Build APK
         run: gradle :app:assembleDebug --stacktrace
       - name: Prepare APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk EBook-Reader-You.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk Cursed-Keyboard.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: EBook-Reader-You-APK
-          path: EBook-Reader-You.apk
-      - name: Publish release
-        if: github.event_name == 'push'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view v0.1.0 >/dev/null 2>&1; then
-            gh release upload v0.1.0 EBook-Reader-You.apk --clobber
-          else
-            gh release create v0.1.0 EBook-Reader-You.apk --title "EBook Reader You v0.1.0" --notes "Initial full-suite Android reader build with EPUB, PDF, TXT, CBZ, and CBR support."
-          fi
+          name: Cursed-Keyboard-APK
+          path: Cursed-Keyboard.apk
